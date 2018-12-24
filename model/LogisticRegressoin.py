@@ -7,7 +7,8 @@ from confusionMetrics import *
 
 class logisticModel(LogisticRegression):
     def __init__(self):
-        super().__init__()
+        pass
+        # super().__init__()
         # self._train_data = AntiFraudData().retrieve_no_missing_value_data(TRAINING_PATH)
         # self._test_data = AntiFraudData().retrieve_no_missing_value_data(TESTING_PATH)
         #
