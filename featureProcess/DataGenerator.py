@@ -13,7 +13,7 @@ class DataGenerator:
     def __init__(self, raw_data_path=RAW_DATA_PATH):
         self._raw_data = AntiFraudData(raw_data_path).raw
 
-    def get_logit_regression_data(self, test_size=0.3):
+    def get_logistic_regression_data(self, test_size=0.3):
         """
 
         :param raw_data_path:

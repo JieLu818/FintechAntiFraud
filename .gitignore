@@ -1,0 +1,14 @@
+.venv/
+.idea/
+*.pyc
+*.pyo
+*.pytmp
+.ipynb_checkpoints/
+.tmp
+.DS_Store
+Pipfile
+Pipfile.lock
+**/*.db
+.coverage
+*.pickle
+build/*
