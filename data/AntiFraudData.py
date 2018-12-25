@@ -1,9 +1,9 @@
 import os
 import pandas as pd
 
-RAW_DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + '\\anti_fraud_data.csv'
-TRAINING_PATH = os.path.dirname(os.path.abspath(__file__)) + '\\training_data_clean.csv'
-TESTING_PATH = os.path.dirname(os.path.abspath(__file__)) + '\\testing_data_clean.csv'
+RAW_DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + '/anti_fraud_data.csv'
+TRAINING_PATH = os.path.dirname(os.path.abspath(__file__)) + '/training_data_clean.csv'
+TESTING_PATH = os.path.dirname(os.path.abspath(__file__)) + '/testing_data_clean.csv'
 
 class AntiFraudData:
     def __init__(self, path=RAW_DATA_PATH):

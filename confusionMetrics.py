@@ -22,12 +22,20 @@ def get_confusion_matrix(tp, fp, tn, fn):
 
 
 def ROC_AUC(df, score, target, plot=True):
+    """
+
+    :param df: test result & true label
+    :param score: test result column name
+    :param target: real result column name
+    :param plot:
+    :return:
+    """
     df2 = df.copy()
     s = list(set(df2[score]))
     tpr_list = [0]
     fpr_list = [0]
     for k in s:
-        df2['label_temp'] = df[score].map(lambda x: int(x >= k))
+        df2['label_temp'] = (df[score] >= k).astype(int)
         TP = df2[(df2.label_temp == 1) & (df2[target] == 1)].shape[0]
         FN = df2[(df2.label_temp == 1) & (df2[target] == 0)].shape[0]
         FP = df2[(df2.label_temp == 0) & (df2[target] == 1)].shape[0]

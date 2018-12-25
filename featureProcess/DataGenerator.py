@@ -113,7 +113,14 @@ class DataGenerator:
                 del test_data[col]
                 continue
             test_data[col] = (temp_df[col] - mu[col]) / sigma[col]
-        return train_data, test_data
+
+        train_X = train_data[all_columns]
+        train_y = train_data[['flag']]
+        match_df = pd.DataFrame(columns=train_data.columns)
+        test_data = pd.concat([match_df, test_data],axis=0, sort=True).fillna(0)
+        test_X = test_data[all_columns]
+        test_y = test_data[['flag']]
+        return {'train_X': train_X, 'train_y': train_y, 'test_X': test_X, 'test_y': test_y}
 
     def get_decision_tree_data(self, raw_data_path=AntiFraudData, test_size=0.3):
         pass
