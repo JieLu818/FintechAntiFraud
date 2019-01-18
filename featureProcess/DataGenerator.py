@@ -117,7 +117,7 @@ class DataGenerator:
         train_X = train_data[all_columns]
         train_y = train_data[['flag']]
         match_df = pd.DataFrame(columns=train_data.columns)
-        test_data = pd.concat([match_df, test_data],axis=0, sort=True).fillna(0)
+        test_data = pd.concat([match_df, test_data], axis=0, sort=True).fillna(0)
         test_X = test_data[all_columns]
         test_y = test_data[['flag']]
         return {'train_X': train_X, 'train_y': train_y, 'test_X': test_X, 'test_y': test_y}
@@ -125,8 +125,21 @@ class DataGenerator:
     def get_decision_tree_data(self, raw_data_path=AntiFraudData, test_size=0.3):
         pass
 
+    def get_svm_data(self, adj_equal=False):
+        """
+        need to reduce the effect of disequilibrium sampling method
+        :param adj_equal: if False return disequilibrium data
+        :param raw_data_path:
+        :return:
+        """
+        data_dict = self.get_logistic_regression_data()
+        if not adj_equal:
+            return data_dict
+        train_data = pd.concat([data_dict['train_X'], data_dict['train_y']], axis=1)
+        test_data = pd.concat([data_dict['test_X'], data_dict['test_y']], axis=1)
+
 
 if __name__ == '__main__':
     dg = DataGenerator()
-    x, y = dg.get_logit_regression_data()
+    x, y = dg.get_svm_data()
     print(x)

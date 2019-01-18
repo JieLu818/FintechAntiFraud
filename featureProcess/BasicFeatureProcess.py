@@ -83,12 +83,16 @@ class BasicFeatureProcess:
         """
         tmp_data = data.copy()
         dummy_cols = list()
+        dummy_data = list()
         for col in cols:
             dummies = pd.get_dummies(tmp_data[col], prefix=col)
-            tmp_data = pd.concat([dummies, tmp_data], axis=1)
+            dummy_data.append(dummies)
+            # tmp_data = pd.concat([dummies, tmp_data], axis=1)
             del tmp_data[col]
             dummy_cols = dummy_cols + dummies.columns.tolist()
-        return {'data': tmp_data, 'dummy_cols': dummy_cols}
+        dummy_df = pd.concat(dummy_data, axis=1)
+        res_df = pd.concat([dummy_df, tmp_data], axis=1)
+        return {'data': res_df, 'dummy_cols': dummy_cols}
 
 
 if __name__ == '__main__':
